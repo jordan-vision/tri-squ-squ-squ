@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Xml.Serialization;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,7 +7,7 @@ public class Calibrator : MonoBehaviour
 {
     private bool m_audioCalibrationReady, m_audioCalibrationStarted, m_inputCalibrationStarted, m_inputCalibrationDone;
     [SerializeField] private AudioManager m_audioManager;
-    private float m_audioOffset = 0.1f, m_inputOffset;
+    private float m_audioOffset = 0.1f;
     private float m_averageInputError;
     [SerializeField] private GameObject[] m_beats;
     private int m_index = 0;
@@ -76,7 +74,7 @@ public class Calibrator : MonoBehaviour
             m_index++;
             m_offset.text = thisOffset.ToString("+0.00;-0.00");
             m_instructions.text = "Calibrate input and audio. Hit <color=#DB5A8C>SPACE</color> in time with the metronome.\n" +
-                $"Do this {8 - m_index} more time(s).";
+                $"Do this <color=#DB5A8C>{8 - m_index}</color> more time(s).";
 
             m_audioManager.Fade(1, (m_index + 1) / 9.0f);
 

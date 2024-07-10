@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Boss : MonoBehaviour
 {
@@ -123,23 +121,23 @@ public class Boss : MonoBehaviour
             if (square == null)
                 continue;
 
-            square.GetComponent<BasicEnemy>().ShootingBeats = new List<int>() { 0 };
+            square.GetComponent<BasicEnemy>().ShootingBeats = new List<int>() { 1 };
             square.GetComponent<BasicEnemy>().TargetPlayer = true;
         }
 
         for (int i = 0; i < 4; i++)
         {
-            if (m_squares[0] != null)
-                StartCoroutine(MoveTowards(m_squares[0], new Vector3(-7.0f, Random.Range(-4.0f, 4.0f))));
+            if (m_squares[i] != null)
+                StartCoroutine(MoveTowards(m_squares[i], new Vector3(-7.0f, Random.Range(-4.0f, 4.0f))));
 
-            if (m_squares[1] != null)
-                StartCoroutine(MoveTowards(m_squares[1], new Vector3(Random.Range(-7.0f, 7.0f), -4.0f)));
+            if (m_squares[(i + 1) % 4] != null)
+                StartCoroutine(MoveTowards(m_squares[(i + 1) % 4], new Vector3(Random.Range(-7.0f, 7.0f), -4.0f)));
 
-            if (m_squares[2] != null)
-                StartCoroutine(MoveTowards(m_squares[2], new Vector3(7.0f, Random.Range(-4.0f, 4.0f))));
+            if (m_squares[(i + 2) % 4] != null)
+                StartCoroutine(MoveTowards(m_squares[(i + 2) % 4], new Vector3(7.0f, Random.Range(-4.0f, 4.0f))));
 
-            if (m_squares[3] != null)
-                StartCoroutine(MoveTowards(m_squares[3], new Vector3(Random.Range(-7.0f, 7.0f), 4.0f)));
+            if (m_squares[(i + 3) % 4] != null)
+                StartCoroutine(MoveTowards(m_squares[(i + 3) % 4], new Vector3(Random.Range(-7.0f, 7.0f), 4.0f)));
 
             yield return new WaitForSeconds(1.8f);
         }
@@ -188,8 +186,8 @@ public class Boss : MonoBehaviour
         if (!resetPosition)
             yield break;
 
-        float angle = Mathf.PI * 0.5f * m_timer + 0.2f;
-        Vector2 newCenter = new Vector2(transform.position.x, 2.0f * Mathf.Sin(Mathf.PI * 0.25f * m_timer + 0.2f));
+        float angle = Mathf.PI * 0.5f * (m_timer + 0.2f);
+        Vector2 newCenter = new Vector2(transform.position.x, 2.0f * Mathf.Sin(Mathf.PI * 0.25f * (m_timer + 0.2f)));
 
         if (m_squares[0] != null)
             StartCoroutine(MoveTowards(m_squares[0], newCenter + new Vector2(Mathf.Cos(angle), Mathf.Sin(angle))));

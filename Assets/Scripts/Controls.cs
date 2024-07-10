@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Controls
@@ -8,7 +6,7 @@ public class Controls
         m_up = { KeyCode.UpArrow, KeyCode.W }, 
         m_down = {KeyCode.DownArrow, KeyCode.S}, 
         m_left = {KeyCode.LeftArrow, KeyCode.A}, 
-        right = {KeyCode.RightArrow, KeyCode.D},
+        m_right = {KeyCode.RightArrow, KeyCode.D},
         m_shoot = {KeyCode.Space, KeyCode.Z, KeyCode.Return};
 
     public static bool GetUp()
@@ -53,7 +51,7 @@ public class Controls
 
     public static bool GetRight()
     {
-        foreach (KeyCode keyCode in right)
+        foreach (KeyCode keyCode in m_right)
         {
             if (Input.GetKey(keyCode))
                 return true;
@@ -63,7 +61,7 @@ public class Controls
 
     public static bool GetRightPress()
     {
-        foreach (KeyCode keyCode in right)
+        foreach (KeyCode keyCode in m_right)
         {
             if (Input.GetKeyDown(keyCode))
                 return true;

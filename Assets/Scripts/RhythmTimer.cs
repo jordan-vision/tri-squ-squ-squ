@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class RhythmTimer : MonoBehaviour
@@ -44,8 +43,8 @@ public class RhythmTimer : MonoBehaviour
         float basePower = 1;
         basePower *= TimingAccuracy();
 
-        float timeTillPreviousShot = (float)(DateTime.Now - m_lastShot).TotalSeconds;
-        float spamPunish = Mathf.Min(1, Math.Max(0, (timeTillPreviousShot / m_beatLength) * 2 - 1));
+        float timeSincePreviousShot = (float)(DateTime.Now - m_lastShot).TotalSeconds;
+        float spamPunish = Mathf.Min(1, Math.Max(0, (timeSincePreviousShot / m_beatLength) * 2 - 1));
         basePower *= spamPunish;
         m_lastShot = DateTime.Now;
 

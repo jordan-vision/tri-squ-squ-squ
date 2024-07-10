@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -55,7 +54,7 @@ public class Ending : MonoBehaviour
         m_creditsText.text = "Thank you for playing!";
 
         yield return new WaitForSeconds(2.0f);
-        m_finalScore.text = $"Final Score: <color=#ffc0c0>{LevelManager.Instance.Player.Score.ToString("00000")}</color>";
+        m_finalScore.text = $"Final Score: <color=#ffc0c0>{LevelManager.Instance.Player.Score:00000}</color>";
         m_retryOption.gameObject.SetActive(true);
         m_quitOption.gameObject.SetActive(true);
 

@@ -29,7 +29,7 @@ public class AudioManager : MonoBehaviour
 
     public IEnumerator Fade(AudioSource source, float newVolume)
     {
-        while (source.volume != newVolume)
+        while (Mathf.Abs(source.volume - newVolume) > 0.05f)
         {
             if (source.volume < newVolume)
                 source.volume += 0.05f;
@@ -39,6 +39,8 @@ public class AudioManager : MonoBehaviour
 
             yield return new WaitForSeconds(0.1f);
         }
+
+        source.volume = newVolume;
     }
 
     public void PlayAllMusic()
