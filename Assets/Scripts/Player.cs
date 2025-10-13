@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
         int vertical = Controls.GetVertical();
         int horizontal = Controls.GetHorizontal();
 
-        m_rb.velocity = new Vector2(horizontal * m_xSpeed, vertical * m_ySpeed);
+        m_rb.linearVelocity = new Vector2(horizontal * m_xSpeed, vertical * m_ySpeed);
     }
 
     private void Shoot()
